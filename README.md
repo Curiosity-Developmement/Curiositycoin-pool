@@ -1,0 +1,1 @@
+# Curiositycoin-pool
