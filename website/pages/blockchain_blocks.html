@@ -1,0 +1,66 @@
+<style>
+    .blocksStatHolder>span {
+        display: inline-block;
+        border-radius: 5px;
+        padding: 1px 9px;
+        border: 1px solid #e5e5e5;
+        margin: 2px;
+    }
+
+    .blocksStatHolder>span>span {
+        font-weight: bold;
+    }
+
+    #blocks_rows>tr>td {
+        vertical-align: middle;
+        font-family: 'Inconsolata', monospace;
+        font-size: 0.95em;
+        text-align: center;
+    }
+
+    .luckGood {
+        color: darkgreen;
+    }
+
+    .luckBad {
+        color: darkred;
+    }
+</style>
+
+<div class="input-group">
+    <input class="form-control" placeholder="Search for block number / block hash / hash transaction" id="txt_search">
+    <span class="input-group-btn"><button class="btn btn-default" type="button" id="btn_search">
+            <span><i class="fa fa-search"></i> Search</span>
+        </button></span>
+</div>
+
+<div class="blocksStatHolder">
+    <span class="bg-primary">Total Blocks: <span id="networkLastReward"></span></span>
+    <span class="bg-primary">Hash Rate: <span id="networkHashrate"></span></span>
+    <span class="bg-primary">Difficulty: <span id="networkDifficulty"></span></span>
+</div>
+
+<hr>
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th><i class="fa fa-bars"></i> Height</th>
+                <th><i class="fa fa-unlock-alt"></i> Size</th>
+                <th><i class="fa fa-paw"></i> Block Hash</th>
+                <th><i class="fa fa-clock-o"></i> Time Found</th>
+                <th><i class="fa fa-bars"></i> Transactions</th>
+            </tr>
+        </thead>
+        <tbody id="blocks_rows">
+
+        </tbody>
+    </table>
+</div>
+
+<p class="text-center">
+    <button type="button" class="btn btn-default" id="loadMoreBlocks">Load More</button>
+</p>
+
+<script src="js/blockchain-blocks.js"></script>

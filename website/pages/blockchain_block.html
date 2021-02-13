@@ -1,0 +1,54 @@
+<style>
+
+</style>
+
+
+<div id="siteInfo">
+    <!-- Description or information about this pool -->
+</div>
+
+<div class="row">
+    <h3>Block <small id="block.hash"></small></h3>
+    <div class="col-md-6 stats">
+        <div><i class="fa fa-circle-o"></i> Height: <span id="block.height"></span></div>
+        <div><i class="fa fa-circle-o"></i> Timestamp: <span id="block.timestamp"></span></div>
+        <div><i class="fa fa-circle-o"></i> Difficulty: <span id="block.difficulty"></span></div>
+        <div><i class="fa fa-circle-o"></i> Orphan: <span id="block.orphan"></span></div>
+        <div><i class="fa fa-circle-o"></i> Transactions: <span id="block.transactions"></span></a></div>
+        <div><i class="fa fa-circle-o"></i> Total coins in the network: <span id="block.totalCoins"></span></div>
+        <div><i class="fa fa-circle-o"></i> Total transactions in the network: <span
+                id="block.totalTransactions"></span></div>
+    </div>
+
+    <div class="col-md-6 stats">
+        <div><i class="fa fa-circle-o"></i> Total transactions size, bytes: <span id="block.transactionsSize"></span>
+        </div>
+        <div><i class="fa fa-circle-o"></i> Total block size, bytes: <span id="block.blockSize"></span></div>
+        <div><i class="fa fa-circle-o"></i> Current txs median, bytes: <span id="block.currentTxsMedian"></span></div>
+        <div><i class="fa fa-circle-o"></i> Effective txs median, bytes: <span id="block.effectiveTxsMedian"></span>
+        </div>
+        <div><i class="fa fa-circle-o"></i> Reward penalty: <span id="block.rewardPenalty"></span></div>
+        <div><i class="fa fa-circle-o"></i> Base Reward: <span id="block.baseReward"></span></div>
+        <div><i class="fa fa-circle-o"></i> Transactions fee: <span id="block.transactionsFee"></span></div>
+        <div><i class="fa fa-circle-o"></i> Reward: <span id="block.reward"></span></div>
+    </div>
+</div>
+
+<h3 class="transactions">Тransactions</h3>
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th><i class="fa fa-paw"></i> Hash</th>
+                <th><i class="fa fa-paw"></i> Fee</th>
+                <th><i class="fa fa-money"></i> Total Amount</th>
+                <th><i class="fa fa-arrows"></i> Size</th>
+            </tr>
+        </thead>
+        <tbody id="transactions_rows">
+
+        </tbody>
+    </table>
+</div>
+
+<script src="js/block.js"></script>

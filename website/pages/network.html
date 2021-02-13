@@ -1,0 +1,25 @@
+<style>
+    #network_rows>tr>td {
+        vertical-align: middle;
+        font-family: 'Inconsolata', monospace;
+        font-size: 0.95em;
+    }
+</style>
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th><span id="network-symbol"></span> Pools</th>
+                <th><i class="fa fa-bars"></i> Height</th>
+                <th><i class="fa fa-tachometer"></i> Hashrate</th>
+                <th><i class="fa fa-group"></i> Miners</th>
+                <th><i class="fa fa-money"></i> Total Fee</th>
+                <th><i class="fa fa-clock-o"></i> Last Block Found</th>
+            </tr>
+        </thead>
+        <tbody id="network_rows">
+        </tbody>
+    </table>
+</div>
+<script src="js/network.js"></script>

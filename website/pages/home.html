@@ -1,0 +1,265 @@
+<style>
+    .marketFooter {
+        font-size: 10px;
+        opacity: 0.6;
+    }
+
+    #networkLastReward {
+        text-transform: uppercase;
+    }
+
+    #lastHash {
+        font-family: 'Inconsolata', monospace;
+        font-size: 0.8em;
+    }
+
+    #poolDonations {
+        font-size: 0.75em;
+    }
+
+    #miningProfitCalc {
+        margin: 35px 0;
+    }
+
+    #calcHashDropdown {
+
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+    }
+
+    #calcHashHolder {
+        width: 590px;
+        max-width: 100%;
+    }
+
+    #calcHashRate {
+        z-index: inherit;
+        font-family: 'Inconsolata', monospace;
+    }
+
+    #calcHashAmount {
+        font-family: 'Inconsolata', monospace;
+    }
+
+    #calcHashResultsHolder {
+        min-width: 145px;
+        max-width: 145px;
+        color: #c2c2c2;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    #yourStatsInput {
+        z-index: inherit;
+        font-family: 'Inconsolata', monospace;
+    }
+
+    #yourAddressDisplay>span {
+        font-family: 'Inconsolata', monospace;
+    }
+
+    #lookUp>span:nth-child(2) {
+        display: none;
+    }
+
+    .yourStats {
+        display: none;
+        font-size: 1.2rem;
+    }
+
+    #yourAddressDisplay {
+        display: inline-block;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        vertical-align: middle;
+        font-family: 'Inconsolata', monospace;
+        font-size: 0.9em;
+    }
+
+    #addressError {
+        color: red;
+    }
+
+    #payments_rows>tr>td {
+        vertical-align: middle;
+        font-family: 'Inconsolata', monospace;
+        font-size: 0.95em;
+        text-align: center;
+    }
+
+    #payments_rows>tr>td:nth-child(2) {
+        text-align: left;
+    }
+</style>
+<div class="row">
+    <div class="col-md-4 stats">
+      <h3>CURI Network</h3>
+      <div>Hash Rate: <span id="networkHashrate"></span></div>
+      <div>Block Found: <span id="networkLastBlockFound"></span></div>
+      <div>Difficulty: <span id="networkDifficulty"></span></div>
+      <div>Blockchain Height: <span id="blockchainHeight"></span></div>
+      <div>Last Reward: <span id="networkLastReward"></span></div>
+      <div>Last Hash: <a id="lastHash" target="_blank"></a></div>
+    </div>
+  
+    <div class="col-md-4 stats">
+
+      <!-- Change this to your pools name -->
+      <h3>Curiositycoin</h3>
+      <!-- To customize your pool -->
+      <div>Hash Rate: <span id="poolHashrate"></span></div>
+      <div>Block Found: <span id="poolLastBlockFound"></span></div>
+      <div>Connected Miners: <span id="poolMiners"></span></div>
+      <div>Total Pool Fee: <span id="poolFee"></span></div>
+      <div>Block Found Every: <span id="blockSolvedTime"></span> (est.)</div>
+    </div>
+  </div>
+  
+  <!-- <hr> -->
+  
+  <div class="row chartsPoolStat">
+    <div class="col-sm-20 chartWrap">
+      <h4>Difficulty</h4>
+      <div id="chartDifficulty" data-chart="diff">
+        <div class="chart"></div>
+        <!-- <p class="text-center" id="cur_diff">-</p> -->
+      </div>
+    </div>
+    <div class="col-sm-20 chartWrap">
+      <h4>Hashrate</h4>
+      <div id="chartHashrate" data-chart="hashrate">
+        <div class="chart"></div>
+        <!-- <p class="text-center" id="cur_hashrate">-</p> -->
+      </div>
+    </div>
+    <div class="col-sm-20 chartWrap">
+      <h4>Miners</h4>
+      <div id="chartWorkers" data-chart="workers">
+        <div class="chart"></div>
+        <!-- <p class="text-center" id="cur_workers">-</p> -->
+      </div>
+    </div>
+  </div>
+  
+  <script src="js/charts.js"></script>
+  
+  </div>
+  
+  <!-- <hr> -->
+  
+  <div id="miningProfitCalc">
+    <h3>Estimate Mining Profits</h3>
+    <div id="calcHashHolder">
+      <div class="input-group">
+        <input type="number" class="form-control" id="calcHashRate" placeholder="Enter Your Hash Rate">
+        <div class="input-group-btn">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="calcHashDropdown">
+            <span id="calcHashUnit" data-mul="1">KH/s</span> <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-right" role="menu" id="calcHashUnits">
+            <li><a href="#" data-mul="0">H/s</a></li>
+            <li><a href="#" data-mul="1">KH/s</a></li>
+            <li><a href="#" data-mul="2">MH/s</a></li>
+          </ul>
+        </div>
+        <span class="input-group-addon" id="calcHashResultsHolder"><span id="calcHashAmount"></span> <span id="calcHashSymbol"></span>/day</span>
+      </div>
+    </div>
+  </div>
+  
+  <hr>
+  
+  <div class="stats">
+    <h3>Your Stats & Payment History</h3>
+  
+    <div class="input-group">
+      <input class="form-control" id="yourStatsInput" type="text" placeholder="Enter Your Address">
+      <span class="input-group-btn"><button class="btn btn-default" type="button" id="lookUp">
+          <span><i class="fa fa-search"></i> Lookup</span>
+          <span><i class="fa fa-refresh fa-spin"></i> Searching...</span>
+        </button></span>
+    </div>
+  
+    <div class="row">
+      <div class="col-sm-4 stats">
+        <div id="addressError"></div>
+        <!-- <div class="yourStats"><i class="fa fa-key"></i> Address: <span id="yourAddressDisplay"></span></div> -->
+        <div class="yourStats">Pending Balance: <span id="yourPendingBalance"></span>
+        </div>
+        <div class="yourStats">Total Paid: <span id="yourPaid"></span></div>
+        <div class="yourStats">Last Share Submitted: <span id="yourLastShare"></span>
+        </div>
+        <div class="yourStats">Hash Rate: <span id="yourHashrateHolder"></span>
+        </div>
+        <div class="yourStats">Total Hashes Submitted: <span id="yourHashes"></span></div>
+      </div>
+      <div class="col-sm-4">
+        <div class="userChart" data-chart="user_hashrate">
+          <h4>Hash Rate</h4>
+          <div class="chart">
+  
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="userChart" data-chart="user_payments">
+          <h4>Payments</h4>
+          <div class="chart">
+  
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <hr class="yourStats">
+    <h4 class="yourStats">Payout level</h4>
+    <p class="yourStats">If you prefer a higher payout level than the pool's default then this is
+      where you can change it for your miners.<br>(Minimum payout: <span id="min_payout"></span><span id="min_payout_paymentid"></span>)</p>
+  
+    <div class="form-inline yourStats">
+      <div class="form-group">
+        <label for="yourPayoutRate">Minimum payout:</label>
+        <div class="input-group">
+          <input class="form-control" id="yourPayoutRate" type="number">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button" id="payoutSetButton">
+              <span><i class="fa fa-check"></i> Set</span>
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="yourStats">
+      <div id="action_update_message" role="alert"></div>
+    </div>
+    <hr class="yourStats">
+  
+    <h4 class="yourStats">Payments</h4>
+    <div class="yourStats table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th><i class="fa fa-clock-o"></i> Time Sent</th>
+            <th><i class="fa fa-paw"></i> Transaction Hash</th>
+            <th><i class="fa fa-money"></i> Amount</th>
+            <th><i class="fa fa-sitemap"></i> Mixin</th>
+          </tr>
+        </thead>
+        <tbody id="payments_rows">
+  
+        </tbody>
+      </table>
+    </div>
+    <p class="yourStats text-center">
+      <button type="button" class="btn btn-default" id="loadMorePayments">Load More</button>
+    </p>
+  
+  </div>
+  
+  <script src="js/home.js"></script>
+  

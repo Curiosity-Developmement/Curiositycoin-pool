@@ -1,0 +1,24 @@
+<script src="js/worker-stats.js"></script>
+
+<h3>Individual worker stats</h3>
+<p>To show individual worker statistics; you will need to configure your miner with
+  a worker name. Simply append the worker name you like to your wallet address
+  using the following format:</p>
+<i>wallet_address+workername</i>
+<br><br>
+<p>Note: It might take a few hours before the stats on this page start to show
+  meaningful data depending on pool settings.</p>
+<br>
+<div class="input-group">
+  <input class="form-control" id="yourAddress" type="text" placeholder="Enter Your SEKR Address">
+  <span class="input-group-btn">
+    <button class="btn btn-default" type="button" id="addressSetButton">
+      <span><i class="fa fa-check"></i> Show</span>
+    </button>
+  </span>
+</div>
+<hr>
+
+<div id="worker_chart" style="display:none"></div>
+<div id="graphs">
+</div>
